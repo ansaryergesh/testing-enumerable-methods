@@ -93,6 +93,7 @@ module Enumerable
       end
       array
     end
+  end
   
     # my_inject
     def my_inject(val = self[0])
@@ -102,5 +103,5 @@ module Enumerable
       end
       val
     end
-  end
   
+end  
