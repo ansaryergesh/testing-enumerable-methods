@@ -2,6 +2,7 @@ require './lib/enumerable_methods.rb'
 
 RSpec.describe Enumerable do
   let(:arr){ [1,2,3,4] }
+  let(:arr2){ [1,2,3,4,4,7,7,7,9] }
   let(:str) { ["ab","abc","abcdta"] }
   let(:str1) { ["ab","abc","abcdta", "a"] }
   let(:str2) { ["Ariel","Martin","Darwin","Michaleaaa","Art"] }
@@ -16,7 +17,7 @@ RSpec.describe Enumerable do
 
     it "returns enumerator of the receiver" do
 
-      expect(arr.my_each {|i| i }).to eql(arr.my_each {|i| i })
+      expect(arr.my_each {|i| i }).to eql(arr.each {|i| i })
     end
   end
 
@@ -43,7 +44,7 @@ RSpec.describe Enumerable do
     it "returns an item which is greater than 2" do
 
       result=arr.my_select { |item| item > 2}
-      expect(result).to eq(arr.my_select { |item| item > 2})
+      expect(result).to eq(arr.select { |item| item > 2})
     end
   end
 
@@ -91,22 +92,22 @@ RSpec.describe Enumerable do
   end
    
   describe "my_count" do
-    it "counts number of words in array( it should be 3 words)" do
+    it "counts number of all elements" do
       
-      result = str.my_count {|x|}
-    expect(result).to eql(str.my_count {|x|})
+      result = arr2.my_count
+    expect(result).to eql(arr2.count {|x|})
     end
   end
 
   describe "#my_map" do
     it "add 1 for each item" do
       
-      expect(arr.my_map{ |i| i + 1 }).to eql(arr.my_map{ |i| i + 1 })
+      expect(arr.my_map{ |i| i + 1 }).to eql(arr.map{ |i| i + 1 })
     end
 
     it "multiplies each item by 2" do
       
-      expect(arr.my_map{ |i| i * 2 }).to eql(arr.my_map{ |i| i * 2 })
+      expect(arr.my_map{ |i| i * 2 }).to eql(arr.map{ |i| i * 2 })
     end
   end
 
@@ -114,13 +115,13 @@ RSpec.describe Enumerable do
     it "it gives addition of all element in the array " do
      
       result = arr.my_inject {|a, b| a + b}
-      expect(result).to eql(arr.my_inject {|a, b| a + b})
+      expect(result).to eql(arr.inject {|a, b| a + b})
     end
 
     it "it returns multiplication of all elements in the array" do
       
       result = arr.my_inject {|a, b| a * b}
-      expect(result).to eql(arr.my_inject {|a, b| a * b})
+      expect(result).to eql(arr.inject {|a, b| a * b})
     end
    end
 end
